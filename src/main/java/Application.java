@@ -17,12 +17,12 @@ public class Application {
 		bank.createClientAccount(client1);
 		bank.createClientAccount(client2);
 		
-		doDeposit(bank, client1,5992.98);
-		doDeposit(bank, client2,2543.86);
-		doDeposit(bank, client2,500.0);
+		doDeposit(bank, client1,"5992.98");
+		doDeposit(bank, client2,"2543.86");
+		doDeposit(bank, client2,"500.0");
 		
-		System.out.println("*** The client "+client1+ " as "+ bank.getClientAmount(client1) + " in his bank account.");
-		System.out.println("*** The client "+client2+ " as "+ bank.getClientAmount(client2) + " in his bank account.");
+		System.out.println("*** The client "+client1+ " as "+ bank.getClientBalance(client1) + " in his bank account.");
+		System.out.println("*** The client "+client2+ " as "+ bank.getClientBalance(client2) + " in his bank account.");
 		
 		/**
 		 * 
@@ -31,20 +31,20 @@ public class Application {
 		 *	As a bank client
 		 * 
 		 */
-		doWithdrawl(bank, client1, 100.00);
-		doWithdrawl(bank, client1, 200.00);
-		doWithdrawl(bank, client2, 500.00);
+		doWithdrawl(bank, client1, "100.00");
+		doWithdrawl(bank, client1, "200.00");
+		doWithdrawl(bank, client2, "500.00");
 		
-		System.out.println("*** The client "+client1+ " as "+ bank.getClientAmount(client1) + " in his bank account.");
-		System.out.println("*** The client "+client2+ " as "+ bank.getClientAmount(client2) + " in his bank account.");
+		System.out.println("*** The client "+client1+ " as "+ bank.getClientBalance(client1) + " in his bank account.");
+		System.out.println("*** The client "+client2+ " as "+ bank.getClientBalance(client2) + " in his bank account.");
 	}
 
-	private static void doWithdrawl(Bank bank, String client1, double amount) throws ForbidenTransaction {
+	private static void doWithdrawl(Bank bank, String client1, String amount) throws ForbidenTransaction {
 		System.out.println("The client "+client1+ "  do a "+amount +" withdrawl.");
 		bank.withdrawalClient(client1, amount);
 	}
 
-	private static void doDeposit(Bank bank, String client1, double amount) throws ForbidenTransaction {
+	private static void doDeposit(Bank bank, String client1, String amount) throws ForbidenTransaction {
 		System.out.println("The client "+client1+ "  do a "+amount +" deposite.");
 		bank.depositClient(client1, amount);
 	}

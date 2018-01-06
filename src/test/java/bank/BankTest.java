@@ -2,6 +2,8 @@ package bank;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 public class BankTest {
@@ -17,7 +19,7 @@ public class BankTest {
 	public void get_amount_for_client() throws Exception {
 		Bank bank = Bank.getInstance();
 		bank.createClientAccount("client1");
-		assertEquals(0.0, bank.getClientAmount("client1"), 0.0);
+		checkClientBalace(bank, "client1", "0.0");
 	}
 	
 	@Test
@@ -25,9 +27,9 @@ public class BankTest {
 		Bank bank = Bank.getInstance();
 		bank.createClientAccount("client1");
 		
-		bank.depositClient("client1", 56.79);
+		bank.depositClient("client1", "56.79");
 		
-		assertEquals(56.79, bank.getClientAmount("client1"), 0.0);
+		checkClientBalace(bank, "client1", "56.79");
 	}
 	
 	@Test
@@ -35,11 +37,11 @@ public class BankTest {
 		Bank bank = Bank.getInstance();
 		bank.createClientAccount("client1");
 		
-		bank.depositClient("client1", 90.9);
-		bank.depositClient("client1", 10.10);
-		bank.depositClient("client1", 22.17);
+		bank.depositClient("client1", "90.9");
+		bank.depositClient("client1", "10.10");
+		bank.depositClient("client1", "22.17");
 		
-		assertEquals(123.17, bank.getClientAmount("client1"), 0.0);
+		checkClientBalace(bank, "client1", "123.17");
 	}
 	
 	@Test
@@ -48,11 +50,11 @@ public class BankTest {
 		bank.createClientAccount("client1");
 		bank.createClientAccount("client2");
 		
-		bank.depositClient("client1", 56.79);
-		bank.depositClient("client2", 2560.00);
+		bank.depositClient("client1", "56.79");
+		bank.depositClient("client2", "2560.00");
 		
-		assertEquals(56.79, bank.getClientAmount("client1"), 0.0);
-		assertEquals(2560.00, bank.getClientAmount("client2"), 0.0);
+		checkClientBalace(bank, "client1", "56.79");
+		checkClientBalace(bank, "client2", "2560.00");
 	}
 	
 	@Test
@@ -60,9 +62,9 @@ public class BankTest {
 		Bank bank = Bank.getInstance();
 		bank.createClientAccount("client1");
 		
-		bank.withdrawalClient("client1", 555.55);
+		bank.withdrawalClient("client1", "555.55");
 		
-		assertEquals(-555.55, bank.getClientAmount("client1"), 0.0);
+		checkClientBalace(bank, "client1", "-555.55");
 	}
 	
 	@Test
@@ -70,11 +72,11 @@ public class BankTest {
 		Bank bank = Bank.getInstance();
 		bank.createClientAccount("client1");
 		
-		bank.withdrawalClient("client1", 90.9);
-		bank.withdrawalClient("client1", 10.10);
-		bank.withdrawalClient("client1", 22.17);
+		bank.withdrawalClient("client1", "90.9");
+		bank.withdrawalClient("client1", "10.10");
+		bank.withdrawalClient("client1", "22.17");
 		
-		assertEquals(-123.17, bank.getClientAmount("client1"), 0.0);
+		checkClientBalace(bank, "client1", "-123.17");
 	}
 	
 	@Test
@@ -83,11 +85,15 @@ public class BankTest {
 		bank.createClientAccount("client1");
 		bank.createClientAccount("client2");
 		
-		bank.withdrawalClient("client1", 56.79);
-		bank.withdrawalClient("client2", 2560.00);
+		bank.withdrawalClient("client1", "56.79");
+		bank.withdrawalClient("client2", "2560.00");
 		
-		assertEquals(-56.79, bank.getClientAmount("client1"), 0.0);
-		assertEquals(-2560.00, bank.getClientAmount("client2"), 0.0);
+		checkClientBalace(bank, "client1", "-56.79");
+		checkClientBalace(bank, "client2", "-2560.00");
 	}
 	
+	
+	private void checkClientBalace(Bank bank, String client, String expected) {
+		assertTrue( bank.getClientBalance(client).compareTo(new BigDecimal(expected)) == 0);
+	}
 }

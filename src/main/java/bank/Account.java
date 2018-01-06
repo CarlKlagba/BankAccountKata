@@ -1,40 +1,44 @@
 package bank;
 
+import java.math.BigDecimal;
+
 import bank.exception.ForbidenTransaction;
 
 public class Account {
 	
-	double amount;
+	BigDecimal balance;
 	
 	
 	
 	public Account() {
-		this.amount = 0.0;
+		this.balance = new BigDecimal("0.00");
 	}
 	
-	public Account(double amount) {
-		this.amount = amount;
+	public Account(BigDecimal amount) {
+		this.balance = amount;
 	}
 
 
-	public void deposit(double d) throws ForbidenTransaction {
-		if(d<0.0) {
+	public void deposit(String amount) throws ForbidenTransaction {
+		BigDecimal amountBd=new BigDecimal(amount); 
+		if(amountBd.signum()<0) {
 			throw new ForbidenTransaction();
 		}
-		amount +=  d;
+		balance = balance.add(amountBd);
 	}
 
 
 
-	public double getAmount() {
-		return amount;
+	public BigDecimal getBalance() {
+		return balance;
 	}
 
-	public void withdrawal(double d) throws ForbidenTransaction {
-		if(d<0.0) {
+	public void withdrawal(String amount) throws ForbidenTransaction {
+		BigDecimal amountBd=new BigDecimal(amount); 
+		if(amountBd.signum()<0) {
 			throw new ForbidenTransaction();
 		}
-		amount -=  d;
+		balance = balance.subtract(amountBd);
 	}
 	
 

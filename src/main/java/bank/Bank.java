@@ -1,5 +1,6 @@
 package bank;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,15 +22,15 @@ public class Bank {
 		accounts.put(client, new Account());
 	}
 
-	public double getClientAmount(String client) {
-		return accounts.get(client).getAmount();
+	public BigDecimal getClientBalance(String client) {
+		return accounts.get(client).getBalance();
 	}
 	
-	public void depositClient(String client, double deposit) throws ForbidenTransaction {
+	public void depositClient(String client, String deposit) throws ForbidenTransaction {
 		accounts.get(client).deposit(deposit);
 	}
 	
-	public void withdrawalClient(String client, double withdrawal) throws ForbidenTransaction {
+	public void withdrawalClient(String client, String withdrawal) throws ForbidenTransaction {
 		accounts.get(client).withdrawal(withdrawal);
 	}
 
