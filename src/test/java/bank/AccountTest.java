@@ -34,10 +34,22 @@ public class AccountTest {
 		assertEquals(20.9, account.getAmount(), 0.009);
 	}
 	
+	@Test
+	public void multiple_deposit() throws Exception{
+		Account account = new Account();
+		
+		account.deposit(90.9);
+		account.deposit(10.10);
+		account.deposit(22.17);
+		
+		assertEquals(123.17, account.getAmount(), 0.009);
+	}
+	
 	@Test(expected = ForbidenTransaction.class)
 	public void negatif_deposits_are_forbiden() throws Exception {
 		Account account = new Account();
 		
 		account.deposit(-199.0);
 	}
+	
 }
