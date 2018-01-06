@@ -52,4 +52,41 @@ public class AccountTest {
 		account.deposit(-199.0);
 	}
 	
+	
+	@Test
+	public void withdrawal_in_empty_account() throws Exception {
+		Account account = new Account();
+		
+		account.withdrawal(555.55);
+		
+		assertEquals(-555.55, account.getAmount(), 0.009);
+	}
+	
+	@Test
+	public void withdrawal_in_account_with_existing_Money() throws Exception {
+		Account account = new Account(1555.55);
+		
+		account.withdrawal(555.55);
+		
+		assertEquals(1000.00, account.getAmount(), 0.009);
+	}
+	
+	@Test
+	public void multiple_withdrawal_in_account() throws Exception {
+		Account account = new Account(1555.55);
+		
+		account.withdrawal(555.55);
+		account.withdrawal(150.00);
+		account.withdrawal(20.50);
+		
+		assertEquals(829.50, account.getAmount(), 0.009);
+	}
+	
+	@Test(expected = ForbidenTransaction.class)
+	public void  negatif_withdrawal_are_forbiden() throws Exception {
+		Account account = new Account();
+		
+		account.withdrawal(-555.55);
+	}
+	
 }

@@ -29,6 +29,13 @@ public class Account {
 	public double getAmount() {
 		return amount;
 	}
+
+	public void withdrawal(double d) throws ForbidenTransaction {
+		if(d<0.0) {
+			throw new ForbidenTransaction();
+		}
+		amount -=  d;
+	}
 	
 
 }

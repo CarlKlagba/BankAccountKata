@@ -29,10 +29,13 @@ public class Bank {
 		accounts.get(client).deposit(deposit);
 	}
 	
+	public void withdrawalClient(String client, double withdrawal) throws ForbidenTransaction {
+		accounts.get(client).withdrawal(withdrawal);
+	}
+
 	public Account getClientAccount(String client) {
 		return accounts.get(client);
 	}
-
 
 	
 }
