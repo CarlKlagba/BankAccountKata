@@ -37,6 +37,17 @@ public class Application {
 		
 		System.out.println("*** The client "+client1+ " as "+ bank.getClientBalance(client1) + " in his bank account.");
 		System.out.println("*** The client "+client2+ " as "+ bank.getClientBalance(client2) + " in his bank account.");
+		
+		/**
+		 * 
+		 * US 3:
+		 *	In order to check my operations
+		 *	As a bank client
+		 *	I want to see the history (operation, date, amount, balance) of my operations
+		 */
+		bank.printClientHistory(client1);
+		bank.printClientHistory(client2);
+		
 	}
 
 	private static void doWithdrawl(Bank bank, String client1, String amount) throws ForbidenTransaction {
