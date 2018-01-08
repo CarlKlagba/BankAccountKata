@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static bank.TransactionType.DEPOSIT;
+import static bank.TransactionType.WITHDRAWAL;
+
 import bank.exception.ForbidenTransaction;
 
 public class Bank {
@@ -34,13 +37,13 @@ public class Bank {
 	public void depositClient(String client, String deposit) throws ForbidenTransaction {
 		clientAccounts.get(client).deposit(deposit);
 		clientsHistories.get(client)
-			.add(new Transaction("DEPOSIT", Instant.now(), deposit, getClientAccount(client).getBalance()));
+			.add(new Transaction(DEPOSIT, Instant.now(), deposit, getClientAccount(client).getBalance()));
 	}
 	
 	public void withdrawalClient(String client, String withdrawal) throws ForbidenTransaction {
 		clientAccounts.get(client).withdrawal(withdrawal);
 		clientsHistories.get(client)
-			.add(new Transaction("WITHDRAWAL", Instant.now(), withdrawal, getClientAccount(client).getBalance()));
+			.add(new Transaction(WITHDRAWAL, Instant.now(), withdrawal, getClientAccount(client).getBalance()));
 	}
 
 	public Account getClientAccount(String client) {

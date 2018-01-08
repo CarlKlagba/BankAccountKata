@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static bank.TransactionType.DEPOSIT;
+import static bank.TransactionType.WITHDRAWAL;
+
 import org.junit.Test;
 
 public class BankTest {
@@ -112,7 +115,7 @@ public class BankTest {
 		List<Transaction> history = bank.getClientHistory("client1");
 		assertEquals(1, history.size());
 		
-		checkTransaction(history.get(0), "DEPOSIT", "56.79", "56.79");
+		checkTransaction(history.get(0), DEPOSIT, "56.79", "56.79");
 	}
 	
 	@Test
@@ -127,9 +130,9 @@ public class BankTest {
 		List<Transaction> history = bank.getClientHistory("client1");
 		assertEquals(3, history.size());
 		
-		checkTransaction(history.get(0), "DEPOSIT", "56.79", "56.79");
-		checkTransaction(history.get(1), "DEPOSIT", "2000.00", "2056.79");
-		checkTransaction(history.get(2), "DEPOSIT", "1200.00", "3256.79");
+		checkTransaction(history.get(0), DEPOSIT, "56.79", "56.79");
+		checkTransaction(history.get(1), DEPOSIT, "2000.00", "2056.79");
+		checkTransaction(history.get(2), DEPOSIT, "1200.00", "3256.79");
 	}
 	
 	
@@ -143,7 +146,7 @@ public class BankTest {
 		List<Transaction> history = bank.getClientHistory("client1");
 		assertEquals(1, history.size());
 		
-		checkTransaction(history.get(0), "WITHDRAWAL", "56.79", "-56.79");
+		checkTransaction(history.get(0), WITHDRAWAL, "56.79", "-56.79");
 	}
 	
 	@Test
@@ -158,9 +161,9 @@ public class BankTest {
 		List<Transaction> history = bank.getClientHistory("client1");
 		assertEquals(3, history.size());
 		
-		checkTransaction(history.get(0), "WITHDRAWAL", "56.79", "-56.79");
-		checkTransaction(history.get(1), "WITHDRAWAL", "2000.00", "-2056.79");
-		checkTransaction(history.get(2), "WITHDRAWAL", "1200.00", "-3256.79");
+		checkTransaction(history.get(0), WITHDRAWAL, "56.79", "-56.79");
+		checkTransaction(history.get(1), WITHDRAWAL, "2000.00", "-2056.79");
+		checkTransaction(history.get(2), WITHDRAWAL, "1200.00", "-3256.79");
 	}
 	
 	@Test
@@ -177,14 +180,14 @@ public class BankTest {
 		List<Transaction> history = bank.getClientHistory("client1");
 		assertEquals(5, history.size());
 		
-		checkTransaction(history.get(0), "DEPOSIT", "100.00", "100.00");
-		checkTransaction(history.get(1), "WITHDRAWAL", "2000.00", "-1900.00");
-		checkTransaction(history.get(2), "DEPOSIT", "400.00", "-1500.00");
-		checkTransaction(history.get(3), "WITHDRAWAL", "1200.00", "-2700.00");
-		checkTransaction(history.get(4), "DEPOSIT", "4700.00", "2000.00");
+		checkTransaction(history.get(0), DEPOSIT, "100.00", "100.00");
+		checkTransaction(history.get(1), WITHDRAWAL, "2000.00", "-1900.00");
+		checkTransaction(history.get(2), DEPOSIT, "400.00", "-1500.00");
+		checkTransaction(history.get(3), WITHDRAWAL, "1200.00", "-2700.00");
+		checkTransaction(history.get(4), DEPOSIT, "4700.00", "2000.00");
 	}
 	
-	private void checkTransaction(Transaction transaction, String typeTrancation, String amount, String balance) {
+	private void checkTransaction(Transaction transaction, TransactionType typeTrancation, String amount, String balance) {
 		assertEquals(amount, transaction.getAmount());
 		assertTrue(transaction.getBalance().compareTo(new BigDecimal(balance)) == 0);
 		assertEquals(typeTrancation, transaction.getTypeTransaction());
