@@ -1,6 +1,5 @@
 package bank;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -33,7 +32,7 @@ public class AccountTest {
 	}
 	
 	@Test
-	public void deposit_should_store_a_transaction() throws Exception {
+	public void deposit_should_store_a_transaction(){
 		
 		account.deposit(AMOUNT, DATE);
 		
@@ -41,7 +40,7 @@ public class AccountTest {
 	}
 	
 	@Test
-	public void withdrawal_should_store_a_transaction() throws Exception {
+	public void withdrawal_should_store_a_transaction() {
 		
 		account.withdrawal(AMOUNT, DATE);
 		
@@ -49,7 +48,7 @@ public class AccountTest {
 	}
 	
 	@Test
-	public void printStatement_should_print_the_list_account_transactions() throws Exception {
+	public void printStatement_should_print_the_list_account_transactions() {
 		List<Transaction> transactions = Arrays.asList(new Transaction(AMOUNT, DATE));
 		when(transactionRepository.getAllTransactions()).thenReturn(transactions);
 		

@@ -33,7 +33,7 @@ public class StatementPrinterTest {
 	}
 	
 	@Test
-	public void printStatement_should_print_each_transaction() throws Exception {
+	public void printStatement_should_print_each_transaction() {
 		doNothing().when(printer).printLine(anyString());
 		
 		List<Transaction> transactions = Arrays.asList(new Transaction(new BigDecimal("100.00"), DATE));

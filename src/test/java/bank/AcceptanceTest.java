@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import bank.exception.ForbidenTransaction;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AcceptanceTest {
@@ -31,7 +30,7 @@ public class AcceptanceTest {
 	}
 	
 	@Test
-	public void print_statement_should_print_all_the_operations_when_called() throws ForbidenTransaction {
+	public void print_statement_should_print_all_the_operations_when_called() {
 		
 		account.deposit(new BigDecimal("2500.00"), LocalDate.of(2000, 1, 1));
 		account.withdrawal(new BigDecimal("1000.00"), LocalDate.of(2000, 1, 2));
