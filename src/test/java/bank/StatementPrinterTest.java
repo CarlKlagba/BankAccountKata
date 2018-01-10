@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.anyString;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -35,10 +36,10 @@ public class StatementPrinterTest {
 	public void printStatement_should_print_each_transaction() throws Exception {
 		doNothing().when(printer).printLine(anyString());
 		
-		List<Transaction> transactions = Arrays.asList(new Transaction("100", DATE));
+		List<Transaction> transactions = Arrays.asList(new Transaction(new BigDecimal("100.00"), DATE));
 		statementPrinter.printStatement(transactions);
 		
 		verify(printer).printLine("DATE | AMOUNT | BALANCE");
-		verify(printer).printLine("01/01/2000 | 100 | BALANCE");
+		verify(printer).printLine("01/01/2000 | 100.00 | 100.00");
 	}
 }

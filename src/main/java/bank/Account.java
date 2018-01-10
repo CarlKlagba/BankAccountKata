@@ -1,5 +1,6 @@
 package bank;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
@@ -18,11 +19,11 @@ public class Account {
 
 
 
-	public void deposit(String amount, LocalDate date) {
+	public void deposit(BigDecimal amount, LocalDate date) {
 		transactionRepository.addDeposit(amount, date);
 	}
 
-	public void withdrawal(String amount, LocalDate date){
+	public void withdrawal(BigDecimal amount, LocalDate date){
 		transactionRepository.addWithdrawal(amount, date);
 	}
 

@@ -1,17 +1,26 @@
 package bank;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Transaction {
-	private String amount;
+	private BigDecimal amount;
 	private LocalDate localDate;
 
-	public Transaction(String amount, LocalDate localDate) {
+	public Transaction(BigDecimal amount, LocalDate localDate) {
 		this.amount = amount;
 		this.localDate = localDate;
 		
 	}
-
+	
+	public BigDecimal getAmount() {
+		return amount;
+	}
+	
+	public LocalDate getLocalDate() {
+		return localDate;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
