@@ -6,4 +6,13 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>infrastructure</artifactId>
+  
+  <dependencies>
+  	<dependency>
+  	<groupId>BankAccountKata</groupId>
+  	<artifactId>domain</artifactId>
+  	<version>1.0-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
+  
 </project>
