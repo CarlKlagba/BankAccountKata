@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import org.domain.DepositMoneyIntoAccount;
 import org.domain.Handler;
 import org.domain.PrintAccountStatement;
+import org.domain.aggregate.Account;
 import org.infrastructure.MyCurrency;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class EndToEndTest {
 		 * Step 1 - Test printing the account statement when only one deposit happened with NO CQRS concept
 		 * */
 		//Given
-		Handler handler = new Handler();
+		Handler handler = new Handler(new Account());
 		Statement expectedStatement = new Statement("01/01/2000 || +500.00 || 2500.00");
 		
 		

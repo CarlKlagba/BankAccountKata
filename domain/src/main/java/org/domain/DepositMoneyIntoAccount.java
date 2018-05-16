@@ -4,8 +4,20 @@ import java.time.LocalDate;
 
 public class DepositMoneyIntoAccount {
 
-	public DepositMoneyIntoAccount(Currency myCurrency, LocalDate of) {
+	private Currency amount;
+	private LocalDate date;
+	
+	public DepositMoneyIntoAccount(Currency amount, LocalDate date) {
+		this.amount = amount;
+		this.date = date;
 		
 	}
 	
+	public Currency getAmount() {
+		return amount;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
 }

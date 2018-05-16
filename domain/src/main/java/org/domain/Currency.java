@@ -1,4 +1,8 @@
 package org.domain;
 
-public interface Currency {
+public abstract class Currency {
+	
+	public Currency() {
+		
+	}
 }
